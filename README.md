@@ -2,7 +2,7 @@
     <img src="https://img.shields.io/github/v/release/SmallasWater/LuckDraw?include_prereleases" alt="Latest release">
 </a>
 
-#LuckDraw
+# LuckDraw
 抽奖箱
 ------
 ## 功能
@@ -21,7 +21,9 @@
 
 ## 用法
 >  /luck help 主命令(OP) 
+>
 >  /pla help 玩家伪装 (Player) 
+>
 >  /luckadd 抽奖箱拓展指令
  
   
