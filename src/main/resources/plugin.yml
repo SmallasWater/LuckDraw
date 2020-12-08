@@ -1,0 +1,17 @@
+name: LuckDraw
+main: smallaswater.luckdraw.LuckDraw
+version: 1.3.7.1
+api:
+  - 1.0.9
+author: 若水
+load: POSTWORLD
+permissions:
+  luckdraw.lch:
+    default: op
+    description: "抽奖箱主命令"
+  luckdraw.lchadd:
+    default: op
+    description: "抽奖箱拓展命令"
+  luckdraw.pla:
+    default: true
+    description: "玩家变身命令"

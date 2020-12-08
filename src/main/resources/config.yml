@@ -1,0 +1,20 @@
+# 可以复制粘贴
+# name  只是显示的名字
+# key 用作识别
+掉落物是否显示名称: true
+自定义显示内容: "%name% §ex §a%count%"
+# 有些生物变身会出现崩服....
+禁用变身生物:
+  - Phantom
+  - EnderDragon
+keys:
+  - name: "普通抽奖箱钥匙"
+    key: "a1"
+    id: "131:0"
+    lore: "可以开启普通宝箱"
+    enchant: true
+  - name: "高级抽奖箱钥匙"
+    key: "a2"
+    id: "131:0"
+    lore: "可以开启普通宝箱"
+    enchant: true

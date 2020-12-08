@@ -1,0 +1,5 @@
+openchest.broadcast: "§e[抽奖箱] §d %p 开启了 {name} 抽奖箱"
+chest.notitem: "§e[抽奖箱] §c{name} 抽奖箱没有物品哦..."
+click.frist: "§e[抽奖箱] §c请耐心等待抽奖结束"
+player.notkey: "§e[抽奖箱] §c你没有足够的 {key}"
+player.get.item: "§e[抽奖箱] §a恭喜你获得 {name}"
