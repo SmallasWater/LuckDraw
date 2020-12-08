@@ -1,6 +1,7 @@
 package smallaswater.luckdraw;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.data.Skin;
 import cn.nukkit.item.Item;
@@ -25,6 +26,7 @@ import smallaswater.luckdraw.tasks.ChunkEntitySkinTask;
 import smallaswater.luckdraw.tasks.EntityChestTask;
 
 import smallaswater.luckdraw.utils.Tools;
+import updata.AutoData;
 
 
 import javax.imageio.ImageIO;
@@ -74,8 +76,12 @@ public class LuckDraw extends PluginBase {
 
     @Override
     public void onEnable() {
-
         instance = this;
+        if(Server.getInstance().getPluginManager().getPlugin("AutoUpData") != null){
+            if(AutoData.defaultUpData(this,getFile(),"SmallasWater","LuckDraw")){
+                return;
+            }
+        }
         this.saveDefaultConfig();
         this.reloadConfig();
         initKeys();
