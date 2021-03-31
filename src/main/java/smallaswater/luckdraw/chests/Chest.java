@@ -524,15 +524,14 @@ public class Chest {
         for(BaseItems baseItems:getItems()){
             items.add(baseItems.toString());
         }
-//        LinkedList<String> position = new LinkedList<>();
-//        if(positions.size() > 0){
-//            for(Position position1:positions){
-//                position.add(Tools.positionToString(position1));
-//            }
-//        }
+        LinkedList<String> position = new LinkedList<>();
+        if(positions.size() > 0){
+            for(Position position1:positions){
+                position.add(Tools.positionToString(position1));
+            }
+        }
         config.set("奖励物品",items);
-
-//        config.set("抽奖箱坐标",position);
+        config.set("抽奖箱坐标",position);
         config.save();
     }
 

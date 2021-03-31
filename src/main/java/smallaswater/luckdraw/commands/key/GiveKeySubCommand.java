@@ -8,6 +8,9 @@ import smallaswater.luckdraw.LuckDraw;
 import smallaswater.luckdraw.chests.Key;
 import smallaswater.luckdraw.commands.SubCommand;
 
+/**
+ * @author SmallasWater
+ */
 public class GiveKeySubCommand extends SubCommand {
 
     public GiveKeySubCommand(LuckDraw plugin) {

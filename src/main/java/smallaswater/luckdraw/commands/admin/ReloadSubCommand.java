@@ -26,6 +26,7 @@ public class ReloadSubCommand extends SubCommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
+        LuckDraw.getInstance().reloadConfig();
         LuckDraw.getInstance().initKeys();
         LuckDraw.getInstance().initSkin();
         LuckDraw.getInstance().initChest();

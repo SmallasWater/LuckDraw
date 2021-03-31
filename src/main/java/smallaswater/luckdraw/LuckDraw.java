@@ -175,6 +175,7 @@ public class LuckDraw extends PluginBase {
 
 
 
+
     public void initPlayer(){
         if(getPlayers().size() > 0){
             for (String name:getPlayers()){
@@ -185,6 +186,7 @@ public class LuckDraw extends PluginBase {
 
 
    public void initKeys(){
+
        List<Map> keyList = getConfig().getMapList("keys");
        for(Map map:keyList){
            Item item = Item.fromString(map.get("id").toString());

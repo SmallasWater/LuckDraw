@@ -377,7 +377,7 @@ public class Tools {
         entity1.namedTag.putString("monsterName",player.getName());
         entity1.setScale(player.getScale());
         ChunkEntitySkinTask.entityHashMap.put(player.getName(),entity1);
-        entity1.setNameTagAlwaysVisible();
+//        entity1.setNameTagAlwaysVisible();
         return true;
 
 
@@ -397,12 +397,12 @@ public class Tools {
         return content;
     }
 
-    public static void addParticle(Player player){
-        player.getLevel().addParticleEffect(player.getPosition().add(0.5), ParticleEffect.EXPLOSION_DEATH);
-        player.getLevel().addParticleEffect(player.getPosition().add(0,0,0.5), ParticleEffect.EXPLOSION_DEATH);
-        player.getLevel().addParticleEffect(player.getPosition(), ParticleEffect.EXPLOSION_DEATH);
-        player.getLevel().addParticleEffect(player.getPosition().add(0,0,-0.5), ParticleEffect.EXPLOSION_DEATH);
-        player.getLevel().addParticleEffect(player.getPosition().add(-0.5), ParticleEffect.EXPLOSION_DEATH);
+    public static void addParticle(Position position){
+        position.getLevel().addParticleEffect(position.add(0.5), ParticleEffect.EXPLOSION_DEATH);
+        position.getLevel().addParticleEffect(position.add(0,0,0.5), ParticleEffect.EXPLOSION_DEATH);
+        position.getLevel().addParticleEffect(position, ParticleEffect.EXPLOSION_DEATH);
+        position.getLevel().addParticleEffect(position.add(0,0,-0.5), ParticleEffect.EXPLOSION_DEATH);
+        position.getLevel().addParticleEffect(position.add(-0.5), ParticleEffect.EXPLOSION_DEATH);
     }
     public static String getSubUtilSimple(String soap, String rgex){
         Pattern pattern = Pattern.compile(rgex);

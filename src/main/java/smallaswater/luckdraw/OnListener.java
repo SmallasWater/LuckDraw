@@ -186,36 +186,39 @@ public class OnListener implements Listener {
     @EventHandler
     public void onDamage(EntityDamageEvent event){
         Entity entity = event.getEntity();
-        if(entity instanceof Player){
-            if(entity.namedTag.contains("createentity")){
-                if(event.getCause() != EntityDamageEvent.DamageCause.SUICIDE && event.getCause() != EntityDamageEvent.DamageCause.VOID){
-                    event.setCancelled();
-                }
-            }
-        }else{
-
-            if(event instanceof EntityDamageByEntityEvent){
-                Entity dam = ((EntityDamageByEntityEvent) event).getDamager();
-                if(entity instanceof LuckEntity){
-                    Player player = Server.getInstance().getPlayer(entity.namedTag.getString("monsterName"));
-                    if(player != null){
-                        double deltaX = entity.x - dam.x;
-                        double deltaZ = entity.z - dam.z;
-                        player.knockBack(dam,0,deltaX,deltaZ,((EntityDamageByEntityEvent) event).getKnockBack());
-                        ((LuckEntity) entity).knockBack(dam,0,deltaX,deltaZ,((EntityDamageByEntityEvent) event).getKnockBack());
+        if(entity instanceof Player) {
+            if (entity.namedTag.contains("createentity")) {
+                if (event.getCause() != EntityDamageEvent.DamageCause.SUICIDE && event.getCause() != EntityDamageEvent.DamageCause.VOID) {
+                    Entity entity1 = entity.getLevel().getEntity(entity.namedTag.getLong("createentity"));
+                    if (entity1 == null) {
+                        return;
                     }
+                    entity1.attack(0);
                 }
-                if(entity instanceof LuckEntity){
-                    if(dam.namedTag.contains("createentity") && entity.namedTag.contains("monsterName")){
-                        if(dam.namedTag.getLong("createentity") == entity.getId()
-                                && entity.namedTag.getString("monsterName").equals(dam.getName())){
-                            event.setCancelled();
-                        }
-                    }
-                }
-
             }
         }
+        if(event instanceof EntityDamageByEntityEvent){
+            Entity dam = ((EntityDamageByEntityEvent) event).getDamager();
+            if(entity instanceof LuckEntity){
+                Player player = Server.getInstance().getPlayer(entity.namedTag.getString("monsterName"));
+                if(player != null){
+                    double deltaX = entity.x - dam.x;
+                    double deltaZ = entity.z - dam.z;
+                    player.knockBack(dam,0,deltaX,deltaZ,((EntityDamageByEntityEvent) event).getKnockBack());
+                    ((LuckEntity) entity).knockBack(dam,0,deltaX,deltaZ,((EntityDamageByEntityEvent) event).getKnockBack());
+                }
+            }
+            if(entity instanceof LuckEntity){
+                if(dam.namedTag.contains("createentity") && entity.namedTag.contains("monsterName")){
+                    if(dam.namedTag.getLong("createentity") == entity.getId()
+                            && entity.namedTag.getString("monsterName").equals(dam.getName())){
+                        event.setCancelled();
+                    }
+                }
+            }
+
+        }
+//        }
     }
 
 

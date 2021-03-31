@@ -2,6 +2,8 @@ package smallaswater.luckdraw.tasks;
 
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
+import cn.nukkit.entity.Entity;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
@@ -26,38 +28,32 @@ public class ChestTask extends PluginTask<LuckDraw> {
     @Override
     public void onRun(int i) {
         if(player.isOnline()){
-
             if(!LuckDraw.getInstance().texts.containsKey(player)){
                 LuckDraw.getInstance().texts.put(player,new LinkedHashMap<>());
             }
+
             LinkedHashMap<Position, FloatTextEntity> texts = LuckDraw.getInstance().texts.get(player);
             for (Chest chest : LuckDraw.getInstance().chests.values()) {
                 if (player.isOnline()) {
                     for (Position position : chest.getPositions()) {
                         FloatTextEntity particle;
-                        Position news = position.add(0.5, 2, 0.5);
+                        Position news = position.add(0.5, 1.5, 0.5);
                         if (position.level.getFolderName().equals(player.getLevel().getFolderName())) {
                             if (!texts.containsKey(news)) {
-//                                if(LuckDraw.getInstance().cacheEntity.containsKey(player)){
-//                                    FloatTextEntity entity = LuckDraw.getInstance().cacheEntity.get(player);
-//                                    RemoveEntityPacket pk = new RemoveEntityPacket();
-//                                    pk.eid = entity.getEntityId();
-//                                    player.dataPacket(pk);
-//                                    LuckDraw.getInstance().cacheEntity.remove(player);
-//                                }
-                                particle = new FloatTextEntity(Location.fromObject(news,news.getLevel()), getText(chest));
-                                position.getLevel().addParticle(particle, player);
+                                particle = new FloatTextEntity(Location.fromObject(news,news.getLevel()).getChunk(),Entity.getDefaultNBT(news), getText(chest));
+//                                position.level.addParticle(particle,player);
+                                particle.spawnTo(player);
                                 texts.put(news, particle);
                             } else {
                                 particle = texts.get(news);
                                 particle.setTitle(getText(chest));
-                                particle.toUpData();
+//                                particle.toUpData();
                             }
                         } else {
                             if (texts.containsKey(news)) {
                                 particle = texts.get(news);
                                 RemoveEntityPacket pk = new RemoveEntityPacket();
-                                pk.eid = particle.getEntityId();
+                                pk.eid = particle.getId();
                                 player.dataPacket(pk);
                                 texts.remove(news);
                             }
@@ -76,9 +72,9 @@ public class ChestTask extends PluginTask<LuckDraw> {
                 LinkedHashMap<Position, FloatTextEntity> texts = LuckDraw.getInstance().texts.get(player);
                 if(texts.size() > 0 ){
                     for(Position position:texts.keySet()){
-                        if(LuckDraw.getInstance().getChestByPosition(Location.fromObject(position.add(-0.5,-2,-0.5),position.level)) == null){
+                        if(LuckDraw.getInstance().getChestByPosition(Location.fromObject(position.add(-0.5,-1.5,-0.5),position.level)) == null){
                             RemoveEntityPacket pk = new RemoveEntityPacket();
-                            pk.eid = texts.get(position).getEntityId();
+                            pk.eid = texts.get(position).getId();
                             player.dataPacket(pk);
                             texts.remove(position);
                         }

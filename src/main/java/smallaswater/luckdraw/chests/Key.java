@@ -59,7 +59,12 @@ public class Key implements Cloneable{
     public static boolean isKey(Item item){
         if(item.hasCompoundTag()){
             CompoundTag tag = item.getNamedTag();
-            return !"".equals(tag.getString(TAG));
+            boolean b = !"".equals(tag.getString(TAG));
+            if(LuckDraw.getInstance().keys.containsKey(tag.getString(TAG))){
+                Key key = LuckDraw.getInstance().keys.get(tag.getString(TAG));
+                b = key.keyItem.getId() == item.getId() && key.keyItem.getDamage() == item.getDamage();
+            }
+            return b;
         }
         return false;
     }

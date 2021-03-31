@@ -24,6 +24,12 @@ public class ChestEntity extends EntityHuman {
 
     }
 
+    public ChestEntity(FullChunk chunk, CompoundTag nbt){
+        super(chunk, nbt);
+
+    }
+
+
     @Override
     protected void initEntity() {
         super.initEntity();

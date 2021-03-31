@@ -28,12 +28,17 @@ public class LuckEntity extends EntityLiving {
     private String entityName;
 
 
+
+
     public LuckEntity(FullChunk chunk, CompoundTag nbt, int network, Player player) {
         super(chunk, nbt);
         this.player = player;
         this.network = network;
         this.health = player.getHealth();
         this.setMaxHealth(player.getMaxHealth());
+    }
+    public LuckEntity(FullChunk chunk, CompoundTag nbt) {
+        super(chunk, nbt);
     }
 
     public void setEntityName(String entityName) {
@@ -92,7 +97,6 @@ public class LuckEntity extends EntityLiving {
                 }
 
                 this.player.setHealth(this.getHealth());
-                setNameTag(player.getNameTag());
                 MobArmorEquipmentPacket pks = new MobArmorEquipmentPacket();
                 pks.eid = getId();
                 pks.slots = player.getInventory().getArmorContents();
@@ -162,7 +166,7 @@ public class LuckEntity extends EntityLiving {
                     entity1.close();
                     ChunkEntitySkinTask.entityHashMap.remove(player.getName());
                     tag.remove("createentity");
-                    Tools.addParticle(player);
+                    Tools.addParticle(entity1);
                 }
             }
 
