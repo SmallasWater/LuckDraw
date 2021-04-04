@@ -482,7 +482,7 @@ public class Chest {
 
     public Chest getChestByPosition(Position position){
         for(Position position1:positions){
-            if(position1.level.getFolderName().equals(position.level.getFolderName())){
+            if(position1.level == position.level){
                 if(position.x == position1.x && position.y == position1.y && position.z == position1.z){
                     return this;
                 }

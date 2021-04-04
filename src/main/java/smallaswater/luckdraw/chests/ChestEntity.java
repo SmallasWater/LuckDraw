@@ -1,5 +1,6 @@
 package smallaswater.luckdraw.chests;
 
+import cn.nukkit.Server;
 import cn.nukkit.entity.EntityHuman;
 import cn.nukkit.level.Location;
 import cn.nukkit.level.Position;
@@ -24,9 +25,11 @@ public class ChestEntity extends EntityHuman {
 
     }
 
+    @Deprecated //只是为了兼容PN核心
     public ChestEntity(FullChunk chunk, CompoundTag nbt){
         super(chunk, nbt);
-
+        this.chestPos = new Position(0, 0, 0, Server.getInstance().getDefaultLevel()); //防止NPE
+        this.close();
     }
 
 
